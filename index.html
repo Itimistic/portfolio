@@ -2,172 +2,575 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>I.timistic Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --main-color: #9286CD;
+      --purple: #9286CD;
+      --purple-light: #E8E4FF;
+      --purple-dark: #6B5FB5;
+      --ink: #1A1730;
+      --ink-soft: #4A4460;
+      --surface: #F8F7FF;
+      --white: #ffffff;
+      --card-radius: 12px;
     }
-    .navbar-custom {
-      background-color: var(--main-color);
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
     }
-    .btn-main {
-      background-color: var(--main-color);
-      color: #fff;
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(26, 23, 48, 0.92);
+      backdrop-filter: blur(10px);
     }
-    .btn-main:hover {
-      opacity: 0.9;
-      color: #fff;
+
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      color: var(--purple-light);
+      text-decoration: none;
+      letter-spacing: -0.01em;
     }
-    .card-img-top {
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--purple-light); }
+
+    .nav-icons {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    .nav-icons a {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .nav-icons a:hover { color: var(--purple-light); }
+
+    /* ── HERO ── */
+    header {
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(146,134,205,0.18) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
       width: 100%;
-      height: 200px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.4rem;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.02;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--purple);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--purple);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: var(--purple-dark); transform: translateY(-1px); }
+
+    /* ── SECTION SHELL ── */
+    section { padding: 6rem 2rem; }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--purple);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 540px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--purple-light); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.8rem;
+    }
+
+    .tag {
+      background: white;
+      color: var(--purple-dark);
+      border: 1px solid rgba(146,134,205,0.3);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .about-stat-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      padding: 1.4rem 1.6rem;
+      background: white;
+      border-radius: var(--card-radius);
+      border-left: 3px solid var(--purple);
+    }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--purple);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-top: 0.3rem;
+    }
+
+    /* ── DESIGN SECTION (first/priority) ── */
+    #designs { background: var(--white); }
+
+    /* ── PROJECTS SECTION ── */
+    #projects { background: var(--surface); }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      border: 1px solid rgba(146,134,205,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(146,134,205,0.18);
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 190px;
       object-fit: cover;
+      background: var(--purple-light);
+      display: block;
+    }
+
+    /* Placeholder for missing images */
+    .card-thumb-placeholder {
+      width: 100%;
+      height: 190px;
+      background: linear-gradient(135deg, var(--purple-light) 0%, rgba(146,134,205,0.3) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--purple);
+      font-size: 2.5rem;
+    }
+
+    .card-body {
+      padding: 1.3rem 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--purple-dark);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(146,134,205,0.4);
+      padding-bottom: 1px;
+      width: fit-content;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .card-link:hover { color: var(--purple); border-color: var(--purple); }
+
+    /* Design cards get a Figma badge */
+    .badge-figma {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #f0edff;
+      color: #6B5FB5;
+      border-radius: 6px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      width: fit-content;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+
+    footer a { color: var(--purple); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      header { padding: 7rem 1.2rem 4rem; }
+      section { padding: 4rem 1.2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .project-card { transition: none; }
+      .hero-cta { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="https://github.com/Itimistic" target="_blank">I.timistic</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/Itimistic" target="_blank">
-              <i class="fab fa-github fa-lg"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.instagram.com/i.timistic/" target="_blank">
-              <i class="fab fa-instagram fa-lg"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.linkedin.com/in/pattarathida-khunthula" target="_blank">
-              <i class="fab fa-linkedin fa-lg"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="#">I.timistic</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#designs">Designs</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+    <ul class="nav-icons">
+      <li><a href="https://github.com/Itimistic" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://www.instagram.com/i.timistic/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/pattarathida-khunthula" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
   </nav>
 
-  <!-- Landing Section -->
-  <header class="bg-light text-dark text-center d-flex align-items-center" style="min-height: 100vh;">
-    <div class="container">
-      <h1 class="display-3 fw-bold mb-3">Hello, there!</h1>
-      <p class="lead">Welcome to I.timistic Portfolio</p>
-      <a href="#projects" class="btn btn-pr btn-main btn-lg mt-3">View My Work</a>
+  <!-- Hero -->
+  <header>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">UX/UI Designer & Developer</p>
+      <h1 class="hero-title">Design first,<br><em>code to ship.</em></h1>
+      <p class="hero-sub">I'm I-tim — an IT student at KMITL who started with design and grew into development. I believe great products begin with great experiences.</p>
+      <a href="#designs" class="hero-cta">See my designs <i class="fas fa-arrow-down fa-xs"></i></a>
     </div>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="py-5 bg-white">
-    <div class="container">
-      <h2 class="text-center mb-4">About Me</h2>
-      <p class="text-center mx-auto" style="max-width: 700px;">
-        I.timistic is a username of I-tim. A 3rd year Information Technology student at King Mongkut Institute of Technology Ladkrabang (KMITL). 
-        I began my IT path with designing and development, then expanded into coding.
-      </p>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Projects</h2>
-      <div class="row g-4">
-        
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <img src="pics/jengapizza.png" class="card-img-top" alt="Jenga Pizza Project">
-            <div class="card-body">
-              <h5 class="card-title">Jenga Pizza</h5>
-              <p class="card-text">Pizza delivery website with customizable pizza options.</p>
-              <a href="https://github.com/pubethSri/JengaPizza" class="btn btn-main">View More</a>
-            </div>
+  <!-- About -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="section-label">Who I am</p>
+          <h2 class="section-title">Designer who learned to code</h2>
+          <p style="color: var(--ink-soft); line-height: 1.75; max-width: 440px;">
+            Hi, I'm Pattarathida Khunthula, a 22-year-old IT student at KMITL. I started with design, picked up coding along the way, and I've been experimenting ever since. I believe I can always do more, so I keep learning.
+          </p>
+          <div class="about-tags">
+            <span class="tag">Figma</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">HTML / CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Java</span>
+            <span class="tag">Bootstrap</span>
           </div>
         </div>
-        
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <img src="pics/earthatit.png" class="card-img-top" alt="Earth@IT Project">
-            <div class="card-body">
-              <h5 class="card-title">Earth@IT</h5>
-              <p class="card-text">Navigation website for the School of Information Technology at KMITL.</p>
-              <a href="https://github.com/pubethSri/earth-at-it" class="btn btn-main">View More</a>
-            </div>
+        <div class="about-stat-block">
+          <div class="stat-item">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Projects designed & built end-to-end</div>
           </div>
-        </div>
-        
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <img src="pics/libearch.png" class="card-img-top" alt="Libearch Project">
-            <div class="card-body">
-              <h5 class="card-title">Libearch</h5>
-              <p class="card-text">A library management system built using Java.</p>
-              <a href="https://github.com/armjetnipat/libearch" class="btn btn-main">View More</a>
-            </div>
+          <div class="stat-item">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Years of hands-on design experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">KMITL</div>
+            <div class="stat-label">School of Information Technology, Bangkok</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Design Section -->
-  <section id="designs" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Web Designs (Figma)</h2>
-      <div class="row g-4">
-        
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <img src="pics/jengapizza.png" class="card-img-top" alt="Jenga Pizza Project">
-            <div class="card-body">
-              <h5 class="card-title">Jenga Pizza</h5>
-              <p class="card-text">Pizza delivery website with customizable pizza options.</p>
-              <a href="https://www.figma.com/design/LvOLjra2IVbGOeafjHQ1TO/Webpro-Project?node-id=0-1&t=544HN8EhMYhfZZvN-1" class="btn btn-main">View More</a>
-            </div>
+  <!-- UX/UI Designs — PRIORITY SECTION -->
+  <section id="designs">
+    <div class="section-inner">
+      <p class="section-label">Figma designs</p>
+      <h2 class="section-title">UX/UI Work</h2>
+      <p class="section-desc">Each project starts here — wireframes, user flows, and high-fidelity mockups designed in Figma before a single line of code is written.</p>
+
+      <div class="card-grid">
+
+        <div class="project-card">
+          <img src="pics/thaigredient.png" class="card-thumb" alt="TEDxYouth-Thaigredient" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-pizza-slice"></i></div>
+          <div class="card-body">
+            <span class="badge-figma"><i class="fab fa-figma" style="font-size:0.7rem"></i> Figma</span>
+            <div class="card-title">TEDxYouth Bangkok: Thaigredient</div>
+            <p class="card-desc">A website concept blending Thai cultural identity with youth energy — playful visual elements rooted in Thai heritage, designed for the TEDxYouth Bangkok 2026 event.</p>
+            <a href="https://www.figma.com/proto/KU5ws7ED2q0fGFkyJIIUdO/TEDx-Bangkok-Youth-2026?node-id=153-16&t=97aVt56OHNacu7dy-1&scaling=min-zoom&content-scaling=fixed&page-id=2%3A1234&starting-point-node-id=161%3A20&show-proto-sidebar=1" target="_blank" class="card-link">Open in Figma <i class="fas fa-arrow-up-right-from-square fa-xs"></i></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="pics/gotrip.png" class="card-thumb" alt="GoTrip" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-map-location-dot"></i></div>
+          <div class="card-body">
+            <span class="badge-figma"><i class="fab fa-figma" style="font-size:0.7rem"></i> Figma</span>
+            <div class="card-title">GoTrip</div>
+            <p class="card-desc">A trip planning web app designed to make travel organization feel effortless — itinerary building, destination browsing, and a clean booking-friendly layout.</p>
+            <a href="https://www.figma.com/proto/VJchXncoUMHexeq23ySrfs/GoTrip?node-id=1-2&t=5k1L6J6XUnY1H634-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A104" target="_blank" class="card-link">Open in Figma <i class="fas fa-arrow-up-right-from-square fa-xs"></i></a>
           </div>
         </div>
         
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <img src="pics/earthatit.png" class="card-img-top" alt="Earth@IT Project">
-            <div class="card-body">
-              <h5 class="card-title">Earth@IT</h5>
-              <p class="card-text">Navigation website for the School of Information Technology at KMITL.</p>
-              <a href="https://www.figma.com/design/mh3JBkS8jfU89Qs2tFOliP/Earth-IT?node-id=0-1&t=oob57mxW3oZzWzZr-1" class="btn btn-main">View More</a>
-            </div>
+        <div class="project-card">
+          <img src="pics/jengapizza.png" class="card-thumb" alt="Jenga Pizza Figma design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-pizza-slice"></i></div>
+          <div class="card-body">
+            <span class="badge-figma"><i class="fab fa-figma" style="font-size:0.7rem"></i> Figma</span>
+            <div class="card-title">Jenga Pizza</div>
+            <p class="card-desc">End-to-end design for a pizza delivery platform with customizable order flow and responsive layouts.</p>
+            <a href="https://www.figma.com/design/LvOLjra2IVbGOeafjHQ1TO/Webpro-Project?node-id=0-1&t=544HN8EhMYhfZZvN-1" target="_blank" class="card-link">Open in Figma <i class="fas fa-arrow-up-right-from-square fa-xs"></i></a>
           </div>
         </div>
-        
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <img src="pics/libearch.png" class="card-img-top" alt="Libearch Project">
-            <div class="card-body">
-              <h5 class="card-title">Libearch</h5>
-              <p class="card-text">A library management system built using Java.</p>
-              <a href="https://www.figma.com/design/7PYCPPvGqwKmYHV2Y8k0hp/Wireframe---Libearch?node-id=136-80&t=bNwTo9HD43RI3bhP-1" class="btn btn-main">View More</a>
-            </div>
+
+        <div class="project-card">
+          <img src="pics/ratatouille.png" class="card-thumb" alt="Ratatouille Figma design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-pizza-slice"></i></div>
+          <div class="card-body">
+            <span class="badge-figma"><i class="fab fa-figma" style="font-size:0.7rem"></i> Figma</span>
+            <div class="card-title">Ratatouille Restaurant</div>
+            <p class="card-desc">Restaurant website with Ratatouille Concept.</p>
+            <a href="https://www.figma.com/proto/of3rBlIKI3xY5TazlqDjF1/Ratatouille-Restaurant?node-id=4001-21&p=f&t=nKQ5Fh3BiBrxOREA-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4001%3A21" target="_blank" class="card-link">Open in Figma <i class="fas fa-arrow-up-right-from-square fa-xs"></i></a>
           </div>
         </div>
+
+        <div class="project-card">
+          <img src="pics/earthatit.png" class="card-thumb" alt="Earth@IT Figma design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-map-location-dot"></i></div>
+          <div class="card-body">
+            <span class="badge-figma"><i class="fab fa-figma" style="font-size:0.7rem"></i> Figma</span>
+            <div class="card-title">Earth@IT</div>
+            <p class="card-desc">Navigation experience designed for the KMITL School of IT — wayfinding UX with an interactive campus map concept.</p>
+            <a href="https://www.figma.com/design/mh3JBkS8jfU89Qs2tFOliP/Earth-IT?node-id=0-1&t=oob57mxW3oZzWzZr-1" target="_blank" class="card-link">Open in Figma <i class="fas fa-arrow-up-right-from-square fa-xs"></i></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="pics/libearch.png" class="card-thumb" alt="Libearch Figma wireframe" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-book-open"></i></div>
+          <div class="card-body">
+            <span class="badge-figma"><i class="fab fa-figma" style="font-size:0.7rem"></i> Figma</span>
+            <div class="card-title">Libearch</div>
+            <p class="card-desc">Wireframe and interaction design for a library management system — user flows, information architecture, and interface specs.</p>
+            <a href="https://www.figma.com/design/7PYCPPvGqwKmYHV2Y8k0hp/Wireframe---Libearch?node-id=136-80&t=bNwTo9HD43RI3bhP-1" target="_blank" class="card-link">Open in Figma <i class="fas fa-arrow-up-right-from-square fa-xs"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dev Projects -->
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label">Built projects</p>
+      <h2 class="section-title">Development Work</h2>
+      <p class="section-desc">The coded versions of those designs — each one shipped to GitHub with real functionality.</p>
+
+      <div class="card-grid">
+
+        <div class="project-card">
+          <img src="pics/jengapizza.png" class="card-thumb" alt="Jenga Pizza website" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-pizza-slice"></i></div>
+          <div class="card-body">
+            <div class="card-title">Jenga Pizza</div>
+            <p class="card-desc">Pizza delivery website with customizable pizza options, built with HTML, CSS, and JavaScript.</p>
+            <a href="https://github.com/pubethSri/JengaPizza" target="_blank" class="card-link">View on GitHub <i class="fab fa-github fa-xs"></i></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="pics/earthatit.png" class="card-thumb" alt="Earth@IT website" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-map-location-dot"></i></div>
+          <div class="card-body">
+            <div class="card-title">Earth@IT</div>
+            <p class="card-desc">Navigation website for the School of Information Technology at KMITL — maps, directories, and campus info.</p>
+            <a href="https://github.com/pubethSri/earth-at-it" target="_blank" class="card-link">View on GitHub <i class="fab fa-github fa-xs"></i></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="pics/libearch.png" class="card-thumb" alt="Libearch app" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-thumb-placeholder" style="display:none"><i class="fas fa-book-open"></i></div>
+          <div class="card-body">
+            <div class="card-title">Libearch</div>
+            <p class="card-desc">Library management system built in Java — book cataloguing, borrowing flows, and search functionality.</p>
+            <a href="https://github.com/armjetnipat/libearch" target="_blank" class="card-link">View on GitHub <i class="fab fa-github fa-xs"></i></a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <p class="mb-0">&copy; 2025 I.timistic. All rights reserved.</p>
+  <footer>
+    <p>&copy; 2025 I.timistic &nbsp;·&nbsp; <a href="https://github.com/Itimistic" target="_blank">github.com/Itimistic</a></p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
