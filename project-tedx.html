@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TEDxBangkokYouth 2026 — I.timistic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --purple: #9286CD;
+      --purple-light: #E8E4FF;
+      --purple-dark: #6B5FB5;
+      --ink: #1A1730;
+      --ink-soft: #4A4460;
+      --surface: #F8F7FF;
+      --white: #ffffff;
+      --red: #EB0028;
+      --card-radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(26, 23, 48, 0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      color: var(--purple-light);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--purple-light); }
+
+    /* ── HERO ── */
+    .project-hero {
+      min-height: 75vh;
+      background: var(--ink);
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* TEDx accent — bright red dot like TED branding */
+    .project-hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(235,0,40,0.15) 0%, transparent 70%);
+      bottom: -100px; right: -50px;
+      pointer-events: none;
+    }
+
+    .project-hero::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(146,134,205,0.12) 0%, transparent 70%);
+      top: 80px; left: -60px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--red);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      background: rgba(235,0,40,0.1);
+      border: 1px solid rgba(235,0,40,0.25);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .project-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .project-tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 500px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── META BAR ── */
+    .meta-bar {
+      background: var(--surface);
+      border-bottom: 1px solid rgba(146,134,205,0.15);
+      padding: 1.5rem 2rem;
+    }
+
+    .meta-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {}
+    .meta-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--purple);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .meta-value {
+      font-size: 0.92rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .section-block {
+      margin-bottom: 4rem;
+    }
+
+    .block-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--purple);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .block-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .block-text {
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 620px;
+      font-size: 0.97rem;
+    }
+
+    /* ── INSIGHT CARDS ── */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .insight-card {
+      background: var(--surface);
+      border-radius: var(--card-radius);
+      padding: 1.4rem;
+      border-left: 3px solid var(--purple);
+    }
+
+    .insight-icon {
+      font-size: 1.2rem;
+      color: var(--purple);
+      margin-bottom: 0.6rem;
+    }
+
+    .insight-title {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .insight-desc {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── IMAGE PLACEHOLDER ── */
+    .img-placeholder {
+      width: 100%;
+      border-radius: var(--card-radius);
+      background: linear-gradient(135deg, var(--purple-light), rgba(235,0,40,0.08));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      border: 1px dashed rgba(146,134,205,0.3);
+      margin-top: 1.5rem;
+    }
+
+    .img-placeholder i { font-size: 1.6rem; color: var(--purple); opacity: 0.5; }
+
+    .img-placeholder.tall { height: 360px; }
+    .img-placeholder.short { height: 220px; }
+
+    .img-real {
+      width: 100%;
+      border-radius: var(--card-radius);
+      object-fit: cover;
+      margin-top: 1.5rem;
+      display: block;
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(146,134,205,0.15);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.3rem 1.5rem;
+      border-bottom: 1px solid rgba(146,134,205,0.1);
+    }
+    .process-step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--purple);
+      opacity: 0.4;
+      min-width: 2rem;
+      line-height: 1.2;
+    }
+
+    .step-content {}
+    .step-title {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── KEY DECISION ── */
+    .decision-block {
+      background: var(--ink);
+      border-radius: var(--card-radius);
+      padding: 2rem 2.2rem;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .decision-block::before {
+      content: '"';
+      font-family: 'Fraunces', serif;
+      font-size: 8rem;
+      color: rgba(235,0,40,0.12);
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .decision-text {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+      max-width: 580px;
+    }
+
+    .decision-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── REFLECTION ── */
+    .reflection-box {
+      background: var(--purple-light);
+      border-radius: var(--card-radius);
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .reflection-text {
+      color: var(--ink-soft);
+      line-height: 1.8;
+      font-size: 0.97rem;
+    }
+
+    /* ── CTA ── */
+    .page-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--purple);
+      color: #fff;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--purple-dark); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(146,134,205,0.4);
+      color: var(--purple-dark);
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--purple); color: var(--purple); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(146,134,205,0.12);
+      margin: 3rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--purple); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .project-hero { padding: 7rem 1.2rem 3rem; }
+      .meta-bar { padding: 1.2rem; }
+      .meta-inner { gap: 1.5rem; }
+      .content { padding: 3rem 1.2rem 5rem; }
+      .insight-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="index.html">I.timistic</a>
+    <a class="nav-back" href="index.html"><i class="fas fa-arrow-left fa-xs"></i> Back to portfolio</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="project-hero">
+    <div class="hero-inner">
+      <div class="project-type"><i class="fab fa-figma fa-xs"></i> UX/UI Design</div>
+      <h1 class="project-title">TEDxBangkokYouth<br>2026</h1>
+      <p class="project-tagline">A website that channels Thai identity and youth energy — built to make event operations run smoother behind the scenes.</p>
+    </div>
+  </div>
+
+  <!-- Meta Bar -->
+  <div class="meta-bar">
+    <div class="meta-inner">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">UX/UI Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Tools</div>
+        <div class="meta-value">Figma, Claude</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Type</div>
+        <div class="meta-value">Event Website</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Year</div>
+        <div class="meta-value">2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Overview -->
+    <div class="section-block">
+      <p class="block-label">Overview</p>
+      <h2 class="block-title">What is this project?</h2>
+      <p class="block-text">
+        TEDxBangkokYouth 2026 is an independently organized TED event for youth in Bangkok. The theme "Thaigredient" centers Thai cultural identity as the core ingredient of new ideas. This website serves two audiences at once — attendees looking to register and explore talks, and the staff team managing operations behind the scenes.
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Research -->
+    <div class="section-block">
+      <p class="block-label">Research</p>
+      <h2 class="block-title">Understanding the problem</h2>
+      <p class="block-text">
+        The operations team was buried in manual work — paper registration forms, scattered documents, and no central place to track ticket purchases. The goal was to reduce that friction by centralizing everything into one platform.
+      </p>
+
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-icon"><i class="fas fa-users"></i></div>
+          <div class="insight-title">Target Users</div>
+          <div class="insight-desc">Youth interested in attending talks, and TEDx staff managing operations and ticket verification.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <div class="insight-title">Core Problem</div>
+          <div class="insight-desc">Paper-based registration and scattered workflows created heavy operational burden for the Oper team.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon"><i class="fas fa-bullseye"></i></div>
+          <div class="insight-title">Design Goal</div>
+          <div class="insight-desc">One platform for ticket purchase, registration, and staff verification — reducing manual document handling.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Process -->
+    <div class="section-block">
+      <p class="block-label">Design Process</p>
+      <h2 class="block-title">How it came together</h2>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Define scope & user flows</div>
+            <div class="step-desc">Mapped out two distinct user journeys — attendee (browse → register → buy ticket) and staff (dashboard → verify → manage).</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Wireframing</div>
+            <div class="step-desc">Low-fidelity wireframes to establish layout and information hierarchy before committing to visual direction.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Visual design</div>
+            <div class="step-desc">Built a playful, vibrant UI inspired by Thai visual culture — bold colors, expressive typography, and fun graphic elements that match the event's KV.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Prototype & review</div>
+            <div class="step-desc">Built interactive prototype in Figma and reviewed flows with the team for operational accuracy.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wireframe placeholder -->
+    <div class="img-placeholder short">
+      <i class="fas fa-pen-ruler"></i>
+      <span>Wireframes — coming soon</span>
+    </div>
+
+    <hr class="divider" style="margin-top: 3rem;">
+
+    <!-- Final Design -->
+    <div class="section-block">
+      <p class="block-label">Final Design</p>
+      <h2 class="block-title">The result</h2>
+      <p class="block-text">A vibrant, Thai-flavored website that handles both public-facing event information and internal staff operations in one place.</p>
+
+      <div class="img-placeholder tall">
+        <i class="fas fa-image"></i>
+        <span>Final design screenshots — add your own from pics/</span>
+      </div>
+
+      <div class="page-cta" style="margin-top: 2rem;">
+        <a href="https://www.figma.com/proto/KU5ws7ED2q0fGFkyJIIUdO/TEDx-Bangkok-Youth-2026?node-id=153-16&t=97aVt56OHNacu7dy-1&scaling=min-zoom&content-scaling=fixed&page-id=2%3A1234&starting-point-node-id=161%3A20&show-proto-sidebar=1" target="_blank" class="btn-primary">
+          <i class="fab fa-figma fa-xs"></i> Open prototype in Figma
+        </a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Key Decision -->
+    <div class="section-block">
+      <p class="block-label">Key Design Decision</p>
+      <h2 class="block-title">Why it looks the way it does</h2>
+
+      <div class="decision-block">
+        <p class="decision-text">The KV was bold and vibrant — so the UI had to match. Instead of a safe, minimal event website, I leaned into playful Thai visual elements to give the site its own character.</p>
+        <p class="decision-note">The design reflects the event's spirit, not just its information.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Reflection -->
+    <div class="section-block">
+      <p class="block-label">Reflection</p>
+      <h2 class="block-title">What I learned</h2>
+
+      <div class="reflection-box">
+        <p class="reflection-text">
+          This was my first experience designing within a professional team structure — working alongside operations, marketing, and content teams with real deadlines and real stakeholders. It taught me how design decisions ripple into other departments, and how to communicate design intent clearly to non-designers. Working within an organized system, not just a classroom project, changed how I think about UX.
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Navigation -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <a href="index.html" class="btn-ghost"><i class="fas fa-arrow-left fa-xs"></i> All projects</a>
+      <a href="project-gotrip.html" class="btn-ghost">Next: GoTrip <i class="fas fa-arrow-right fa-xs"></i></a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 I.timistic &nbsp;·&nbsp; <a href="https://github.com/Itimistic" target="_blank">github.com/Itimistic</a></p>
+  </footer>
+
+</body>
+</html>

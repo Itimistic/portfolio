@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Earth@IT — I.timistic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --purple: #9286CD;
+      --purple-light: #E8E4FF;
+      --purple-dark: #6B5FB5;
+      --ink: #1A1730;
+      --ink-soft: #4A4460;
+      --surface: #F8F7FF;
+      --white: #ffffff;
+      --accent: #0891B2;
+      --accent-light: #ECFEFF;
+      --card-radius: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); font-size: 16px; line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(26,23,48,0.92); backdrop-filter: blur(10px); }
+    .nav-brand { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--purple-light); text-decoration: none; }
+    .nav-back { display: flex; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--purple-light); }
+
+    .project-hero { min-height: 75vh; background: #001A20; display: flex; align-items: flex-end; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+    .project-hero::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(8,145,178,0.2) 0%, transparent 70%); bottom: -80px; right: -60px; pointer-events: none; }
+    .project-hero::after { content: ''; position: absolute; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(146,134,205,0.1) 0%, transparent 70%); top: 100px; left: -40px; pointer-events: none; }
+
+    .hero-inner { max-width: 860px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+    .project-type { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 500; color: #22D3EE; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.2rem; background: rgba(8,145,178,0.12); border: 1px solid rgba(8,145,178,0.3); padding: 0.3rem 0.8rem; border-radius: 999px; width: fit-content; }
+    .project-title { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.05; color: var(--white); letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .project-tagline { font-size: 1.1rem; color: rgba(255,255,255,0.5); max-width: 500px; font-weight: 300; line-height: 1.7; }
+
+    .meta-bar { background: var(--surface); border-bottom: 1px solid rgba(146,134,205,0.15); padding: 1.5rem 2rem; }
+    .meta-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 3rem; flex-wrap: wrap; }
+    .meta-label { font-size: 0.7rem; font-weight: 500; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .meta-value { font-size: 0.92rem; color: var(--ink); }
+
+    .content { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .section-block { margin-bottom: 4rem; }
+    .block-label { font-size: 0.72rem; font-weight: 500; color: var(--purple); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .block-title { font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.2rem; }
+    .block-text { color: var(--ink-soft); line-height: 1.8; max-width: 620px; font-size: 0.97rem; }
+
+    .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .insight-card { background: var(--surface); border-radius: var(--card-radius); padding: 1.4rem; border-left: 3px solid var(--purple); }
+    .insight-icon { font-size: 1.2rem; color: var(--purple); margin-bottom: 0.6rem; }
+    .insight-title { font-size: 0.82rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+    .insight-desc { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6; }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .feature-card { background: var(--accent-light); border-radius: var(--card-radius); padding: 1.4rem; border: 1px solid rgba(8,145,178,0.15); }
+    .feature-icon { font-size: 1.2rem; color: var(--accent); margin-bottom: 0.6rem; }
+    .feature-title { font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; }
+    .feature-desc { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6; }
+
+    .img-placeholder { width: 100%; border-radius: var(--card-radius); background: linear-gradient(135deg, var(--accent-light), var(--purple-light)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; color: var(--ink-soft); font-size: 0.82rem; border: 1px dashed rgba(146,134,205,0.3); margin-top: 1.5rem; }
+    .img-placeholder i { font-size: 1.6rem; color: var(--purple); opacity: 0.5; }
+    .img-placeholder.tall { height: 360px; }
+
+    .process-steps { display: flex; flex-direction: column; gap: 0; margin-top: 1.5rem; border: 1px solid rgba(146,134,205,0.15); border-radius: var(--card-radius); overflow: hidden; }
+    .process-step { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.3rem 1.5rem; border-bottom: 1px solid rgba(146,134,205,0.1); }
+    .process-step:last-child { border-bottom: none; }
+    .step-num { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--purple); opacity: 0.4; min-width: 2rem; line-height: 1.2; }
+    .step-title { font-size: 0.92rem; font-weight: 500; color: var(--ink); margin-bottom: 0.2rem; }
+    .step-desc { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+
+    .decision-block { background: #001A20; border-radius: var(--card-radius); padding: 2rem 2.2rem; margin-top: 1.5rem; position: relative; overflow: hidden; }
+    .decision-block::before { content: '"'; font-family: 'Fraunces', serif; font-size: 8rem; color: rgba(8,145,178,0.12); position: absolute; top: -1rem; left: 1rem; line-height: 1; pointer-events: none; }
+    .decision-text { font-family: 'Fraunces', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 400; font-style: italic; color: var(--white); line-height: 1.55; position: relative; z-index: 1; max-width: 580px; }
+    .decision-note { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-top: 1rem; position: relative; z-index: 1; }
+
+    .reflection-box { background: var(--purple-light); border-radius: var(--card-radius); padding: 2rem; margin-top: 1.5rem; }
+    .reflection-text { color: var(--ink-soft); line-height: 1.8; font-size: 0.97rem; }
+
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(146,134,205,0.4); color: var(--purple-dark); padding: 0.75rem 1.6rem; border-radius: 999px; text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--purple); color: var(--purple); }
+
+    .divider { border: none; border-top: 1px solid rgba(146,134,205,0.12); margin: 3rem 0; }
+    footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.82rem; }
+    footer a { color: var(--purple); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .project-hero { padding: 7rem 1.2rem 3rem; }
+      .meta-bar { padding: 1.2rem; }
+      .meta-inner { gap: 1.5rem; }
+      .content { padding: 3rem 1.2rem 5rem; }
+      .insight-grid, .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">I.timistic</a>
+    <a class="nav-back" href="index.html"><i class="fas fa-arrow-left fa-xs"></i> Back to portfolio</a>
+  </nav>
+
+  <div class="project-hero">
+    <div class="hero-inner">
+      <div class="project-type"><i class="fab fa-figma fa-xs"></i> UX/UI Design & Development</div>
+      <h1 class="project-title">Earth@IT</h1>
+      <p class="project-tagline">An indoor navigation app for KMITL's IT faculty — so you always know which room, which floor, which staircase.</p>
+    </div>
+  </div>
+
+  <div class="meta-bar">
+    <div class="meta-inner">
+      <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">UX/UI Designer & Developer</div></div>
+      <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Figma, HTML/CSS/JS</div></div>
+      <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">Navigation Web App</div></div>
+      <div class="meta-item"><div class="meta-label">Repo</div><div class="meta-value"><a href="https://github.com/pubethSri/earth-at-it" target="_blank" style="color: var(--purple); text-decoration: none;">GitHub ↗</a></div></div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="section-block">
+      <p class="block-label">Overview</p>
+      <h2 class="block-title">Never get lost between classes again</h2>
+      <p class="block-text">The IT faculty at KMITL spans multiple floors and dozens of rooms. When class schedules change or rooms shift, students scramble. Earth@IT solves this by linking your class schedule to a live map — calculating the fastest route from your current location to your next classroom, accounting for stairs, elevators, and nearby rooms.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-block">
+      <p class="block-label">Research</p>
+      <h2 class="block-title">A problem we all had</h2>
+      <p class="block-text">This project came from personal experience — being a student in a building where rooms aren't intuitively numbered and class changes happen at the last minute. The confusion is real and frequent.</p>
+
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-icon"><i class="fas fa-users"></i></div>
+          <div class="insight-title">Target Users</div>
+          <div class="insight-desc">Students and staff navigating the multi-floor IT faculty building at KMITL between classes.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <div class="insight-title">Core Problem</div>
+          <div class="insight-desc">Room numbers and floor layouts are confusing, especially when classes change rooms at short notice.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon"><i class="fas fa-bullseye"></i></div>
+          <div class="insight-title">Design Goal</div>
+          <div class="insight-desc">A navigation app that links your timetable to the building map and gives turn-by-turn indoor directions.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-block">
+      <p class="block-label">Key Features</p>
+      <h2 class="block-title">What it does</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-calendar-days"></i></div>
+          <div class="feature-title">Timetable integration</div>
+          <div class="feature-desc">Links to your class schedule so the app knows where you need to be and when.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-route"></i></div>
+          <div class="feature-title">Distance calculation</div>
+          <div class="feature-desc">Calculates the shortest route from current location to the destination classroom.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-stairs"></i></div>
+          <div class="feature-title">Stairs & lift guidance</div>
+          <div class="feature-desc">Specifies whether to take stairs or elevator, based on floor and accessibility.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-door-open"></i></div>
+          <div class="feature-title">Nearby room info</div>
+          <div class="feature-desc">Shows adjacent rooms in the corridor so you can orient yourself quickly.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-block">
+      <p class="block-label">Design Process</p>
+      <h2 class="block-title">Mapping the building before designing the app</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Physical research</div>
+            <div class="step-desc">Walked the building floors, mapped room numbering logic, identified pain points like ambiguous staircases and unmarked lifts.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Information architecture</div>
+            <div class="step-desc">Structured how rooms, floors, and routes would be stored and queried — the data model behind the navigation.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">UI design in Figma</div>
+            <div class="step-desc">Designed map views, route displays, and timetable linking screens with clarity as the priority.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Build & test in-building</div>
+            <div class="step-desc">Implemented and tested the navigation logic on real floors of the faculty building.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="img-placeholder tall">
+      <i class="fas fa-image"></i>
+      <span>Design screens — add from pics/</span>
+    </div>
+
+    <hr class="divider" style="margin-top: 3rem;">
+
+    <div class="section-block">
+      <p class="block-label">Key Design Decision</p>
+      <h2 class="block-title">Navigation tied to the timetable</h2>
+      <div class="decision-block">
+        <p class="decision-text">Instead of making users search for a room manually, the app reads the timetable and already knows where you need to go next. Navigation becomes proactive, not reactive.</p>
+        <p class="decision-note">The best interface is one that already knows the answer.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-block">
+      <p class="block-label">Reflection</p>
+      <h2 class="block-title">What I learned</h2>
+      <div class="reflection-box">
+        <p class="reflection-text">Earth@IT was more complex than it looked from the outside. Mapping a physical space into a navigable data structure required thinking like both a designer and a systems thinker. It was also the first time I did research by literally walking the environment rather than sitting at a desk — and that made the design better.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <a href="project-jenga.html" class="btn-ghost"><i class="fas fa-arrow-left fa-xs"></i> Previous: Jenga Pizza</a>
+      <a href="project-libearch.html" class="btn-ghost">Next: Libearch <i class="fas fa-arrow-right fa-xs"></i></a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 I.timistic &nbsp;·&nbsp; <a href="https://github.com/Itimistic" target="_blank">github.com/Itimistic</a></p>
+  </footer>
+
+</body>
+</html>
